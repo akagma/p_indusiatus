@@ -1,4 +1,5 @@
 import std/[
+  browsers,
   encodings,
   options,
   unicode
@@ -19,6 +20,9 @@ proc main(): cint =
     dirPathBrowseButton = rectPushButton(
       name = "dir_path_browse_button",
       text = "Browse",
+      tooltip = some(toolTip(
+        text = "Choose dir path"
+      ))
     )
 
     rootLayout = layout(
@@ -73,8 +77,14 @@ proc main(): cint =
                       rectPushButton(
                         name = "help_button",
                         text = "Help",
+                        tooltip = some(tooltip(
+                          text = "Display online help page"
+                        )),
                         onClicked = proc() =
                           echo "Launch help page"
+                          openDefaultBrowser(
+                            "https://github.com/akagma/p_indusiatus"
+                          )
                       ),
                       rectPushButton(
                         name = "default_button",
